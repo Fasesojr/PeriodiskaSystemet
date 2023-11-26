@@ -166,4 +166,4 @@ def test():
     p_table.visa_alla()
     p_table.meny()
 
-#test()
+test()

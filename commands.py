@@ -151,12 +151,7 @@ def huvud_funktion():
     p_table = Periodiskasystemet()
     p_table.las_fil()
     p_table.sortera()
-    p_table.visa_alla()
-    p_table.beteckning_quiz()
-    p_table.nummer_quiz()
-
-def main():
-    GUI1.main()
+    p_table.meny()
 
 def test():
     """Test funktion som används under debugging av programmet"""
@@ -166,4 +161,6 @@ def test():
     p_table.visa_alla()
     p_table.meny()
 
-test()
+#  test() <- Den kallar du för att testa specifika funktioner i programmet
+
+huvud_funktion()  #  <- Den kallar du för att köra programmet från användarens vypunkt

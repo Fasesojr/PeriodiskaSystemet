@@ -58,6 +58,7 @@ class Periodiskasystemet:
             self.a_dict[atom.a_nummer] = atom.a_beteckning
 
     def nummer_quiz(self):
+        """Quizzar användaren på atomnummer"""
         while True:
             random_key = random.choice(list(self.a_dict))
             random_beteckning = self.a_dict[random_key]
@@ -74,25 +75,30 @@ class Periodiskasystemet:
             print("4. Tillbaka till menyn")
             rätt_idx = svars_alternativ.index(rätt_svar) + 1
 
-            while True:
-                try:
-                    val = int(input("Ditt val: "))
+            antal_input = 0
+            while antal_input < 3:
+                while True:
+                    try:
+                        val = int(input("Ditt val: "))
+                        break
+        
+                    except ValueError:
+                        print("Svara med 1, 2 eller 3!")
+                if val == rätt_idx:
+                    antal_input = 3
+                    print("Korrekt svar!")
+                elif val == 4:
+                    self.meny()
                     break
-        
-                except ValueError:
-                    print("Svara med 1, 2 eller 3!")
-        
-            if val == rätt_idx:
-                print("Korrekt svar!")
-            elif val == 4:
-                self.meny()
-                break
-            else:
-                print("Fel svar!")
+                else:
+                    antal_input += 1
+                    chanser_kvar = 3-antal_input
+                    print(f"Fel svar!\n Du har {chanser_kvar} försök kvar!")
+                    continue
         
 
     def beteckning_quiz(self):
-        """väljer och skriver ut en random key från a_dict"""
+        """Quizzar användaren på atom beteckningar"""
         while True:
             random_nummer = random.choice(list(self.a_dict.keys()))
             print(f"Vilken beteckning har atomen med atomnummer: {random_nummer}")
@@ -107,25 +113,34 @@ class Periodiskasystemet:
                 print(f"{idx}. {alternativ}")
             print("4. Tillbaka till menyn")
             rätt_idx = svars_alternativ.index(rätt_svar) + 1
-
-            while True:
-                try:
-                    val = int(input("Ditt val: "))
-                    break
+            antal_input = 0
+            while antal_input < 3:
+                while True:
+                    try:
+                        val = int(input("Ditt val: "))
+                        break
         
-                except ValueError:
-                    print("Svara med 1, 2 eller 3!")
-            if val == rätt_idx:
-                print("Korrekt svar!")
-            elif val == 4:
-                self.meny()
-                break
-            else:
-                print("Fel svar!")
+                    except ValueError:
+                        print("Svara med 1, 2 eller 3!")
+                if val == rätt_idx:
+                    antal_input = 3
+                    print("Korrekt svar!")
+                elif val == 4:
+                    self.meny()
+                    break
+                else:
+                    antal_input += 1
+                    chanser_kvar = 3-antal_input
+                    print(f"Fel svar!\n Du har {chanser_kvar} försök kvar!")
+                    continue
+
+            
 
 
     def meny(self):
         """Main meny för användaren att navigera i programmet"""
+        print("Hey och välkommen till denna program!")
+        print("Du kan svara på allt inom programmet med 1, 2, 3, osv. och använda den för att öva på Periodiskasystemet!")
         while True:
             try:
                 val = int(input("------ Meny ------\n1. Visa Periodiskasystemet\n2. Träna på atomnummer\n3. Träna på atombeteckningar\n4. Avsulta programmer\nVal: "))
@@ -161,6 +176,6 @@ def test():
     p_table.visa_alla()
     p_table.meny()
 
-#  test() <- Den kallar du för att testa specifika funktioner i programmet
+#  test() <- Den kallar du för att testa specifika funktioner i programmet det är detta jag använder medans jag kodar
 
 huvud_funktion()  #  <- Den kallar du för att köra programmet från användarens vypunkt
